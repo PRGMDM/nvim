@@ -8,6 +8,14 @@ return {
   {
     "folke/tokyonight.nvim",
     lazy = true,
-    opts = { style = "night" },
+    opts = {
+      style = "night",
+      styles = {
+        sidebars = "dark",
+	floats = "dark",
+	comments = { italic = false },
+	keywords = { italic = false },
+      },
+    },
   },
 }
