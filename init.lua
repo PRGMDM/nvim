@@ -9,4 +9,4 @@ vim.opt.ruler = true
 vim.opt.wildmenu = true
 
 -- colorscheme
-vim.cmd[[colorscheme tokyonight-moon]]
+vim.cmd[[colorscheme tokyonight-night]]
