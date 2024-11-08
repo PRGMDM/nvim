@@ -8,6 +8,7 @@ vim.opt.incsearch = true
 vim.opt.autoindent = true
 vim.opt.ruler = true
 vim.opt.wildmenu = true
+vim.opt.mouse = ""
 
 -- colorscheme
 vim.cmd[[colorscheme tokyonight-night]]
