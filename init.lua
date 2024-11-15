@@ -1,7 +1,7 @@
 require("config.lazy")
 
 -- vim options
-vim.opt.mouse = ""
+vim.opt.mouse = "nv"
 vim.opt.number = true
 vim.opt.ruler = true
 vim.opt.ignorecase = true
