@@ -1,14 +1,18 @@
 require("config.lazy")
 
 -- vim options
+vim.opt.mouse = ""
 vim.opt.number = true
+vim.opt.ruler = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
-vim.opt.autoindent = true
-vim.opt.ruler = true
 vim.opt.wildmenu = true
-vim.opt.mouse = ""
+vim.opt.autoindent = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
 vim.g.mapleader = " "
 
 -- colorscheme
