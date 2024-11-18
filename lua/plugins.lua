@@ -25,5 +25,9 @@ return {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.8',
         dependencies = { 'nvim-lua/plenary.nvim' }
+    },
+    {
+        -- actions for parentheses, brackets, quotes, etc
+        'tpope/vim-surround'
     }
 }
