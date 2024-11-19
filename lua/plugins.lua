@@ -26,8 +26,10 @@ return {
         tag = '0.1.8',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
-    {
-        -- actions for parentheses, brackets, quotes, etc
-        'tpope/vim-surround'
-    }
+    { 'tpope/vim-surround' }, -- actions for parentheses, brackets, quotes, etc
+    { 'neovim/nvim-lspconfig' },
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'hrsh7th/nvim-cmp' },
+    { 'williamboman/mason.nvim' },
+    { 'williamboman/mason-lspconfig.nvim' },
 }
