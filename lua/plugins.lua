@@ -37,5 +37,8 @@ return {
        event = 'BufEnter',
        config = true,
        opts = { default_mappings = true, },
-    }
+    },
+
+    -- plugins used only at work
+    { 'github/copilot.vim' },
 }

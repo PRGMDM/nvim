@@ -64,5 +64,10 @@ require('mason-lspconfig').setup({
     function(server_name)
       require('lspconfig')[server_name].setup({})
     end,
+    ["clangd"] = function () 
+      require'lspconfig'.clangd.setup{
+        cmd = { "clangd-wrapper.sh" }
+      }
+    end,
   },
 })
