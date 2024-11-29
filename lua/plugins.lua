@@ -32,4 +32,10 @@ return {
     { 'hrsh7th/nvim-cmp' },
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
+    {
+      'rmagatti/goto-preview',
+       event = 'BufEnter',
+       config = true,
+       opts = { default_mappings = true, },
+    }
 }
