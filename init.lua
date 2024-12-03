@@ -18,12 +18,34 @@ vim.g.mapleader = " "
 -- colorscheme
 vim.cmd[[colorscheme tokyonight-night]]
 
--- telescope settings
+-- telescope keybindings
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+
+-- jk to escape
+vim.keymap.set('i', 'jk', '<esc>', { noremap = true, silent = true })
+
+-- alt-t to open current buffer in a new tab
+vim.api.nvim_set_keymap('n', '<m-t>', ':tab split<CR>', { noremap = true, silent = true })
+
+-- <leader><CR> to open quickfix item in a vertical split
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "qf",
+    callback = function()
+        vim.keymap.set("n", "<leader><CR>", "<C-w><CR><C-w>L", { buffer = true, noremap = true, silent = true })
+    end,
+})
+
+-- Automatically switch to the previous tab when closing a tab
+vim.api.nvim_create_autocmd("TabClosed", {
+    pattern = "*",
+    callback = function()
+        vim.cmd("tabprevious")
+    end,
+})
 
 -- Reserve a space in the gutter
 -- This will avoid an annoying layout shift in the screen
@@ -64,7 +86,7 @@ require('mason-lspconfig').setup({
     function(server_name)
       require('lspconfig')[server_name].setup({})
     end,
-    ["clangd"] = function () 
+    ["clangd"] = function ()
       require'lspconfig'.clangd.setup{
         cmd = { "clangd-wrapper.sh" }
       }

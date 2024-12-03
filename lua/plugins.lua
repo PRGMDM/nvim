@@ -36,8 +36,16 @@ return {
       'rmagatti/goto-preview',
        event = 'BufEnter',
        config = true,
-       opts = { default_mappings = true, },
+       opts = {
+         default_mappings = true,
+         height = 30,
+       },
     },
+    { 'nvim-treesitter/nvim-treesitter' },
+    {
+        'nvim-treesitter/nvim-treesitter-context',
+        opts = { multiline_threshold = 1, },
+     },
 
     -- plugins used only at work
     { 'github/copilot.vim' },
