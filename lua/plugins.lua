@@ -27,7 +27,19 @@ return {
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
     { 'tpope/vim-surround' }, -- actions for parentheses, brackets, quotes, etc
-    { 'neovim/nvim-lspconfig' },
+    {
+        'neovim/nvim-lspconfig',
+        dependencies = {
+            {
+                "SmiteshP/nvim-navbuddy",
+                dependencies = {
+                    "SmiteshP/nvim-navic",
+                    "MunifTanjim/nui.nvim"
+                },
+                opts = { lsp = { auto_attach = true } }
+            }
+        },
+    },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/nvim-cmp' },
     { 'williamboman/mason.nvim' },

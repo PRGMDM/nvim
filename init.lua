@@ -12,6 +12,7 @@ vim.opt.autoindent = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+vim.opt.clipboard = "unnamedplus"
 
 vim.g.mapleader = " "
 
@@ -38,6 +39,9 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.keymap.set("n", "<leader><CR>", "<C-w><CR><C-w>L", { buffer = true, noremap = true, silent = true })
     end,
 })
+
+-- <leader>n to invoke Navbuddy
+vim.keymap.set('n', '<leader>n', ':Navbuddy<CR>', { noremap = true, silent = true })
 
 -- Automatically switch to the previous tab when closing a tab
 vim.api.nvim_create_autocmd("TabClosed", {
