@@ -14,9 +14,9 @@ return {
             style = "night",
             styles = {
                 sidebars = "dark",
-	            floats = "dark",
-	            comments = { italic = false },
-	            keywords = { italic = false }
+                floats = "dark",
+                comments = { italic = false },
+                keywords = { italic = false }
             }
         }
     },
@@ -33,19 +33,22 @@ return {
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
     {
-      'rmagatti/goto-preview',
-       event = 'BufEnter',
-       config = true,
-       opts = {
-         default_mappings = true,
-         height = 30,
-       },
+        'rmagatti/goto-preview',
+        event = 'BufEnter',
+        config = true,
+        opts = {
+            default_mappings = true,
+            height = 30,
+        },
     },
     { 'nvim-treesitter/nvim-treesitter' },
     {
         'nvim-treesitter/nvim-treesitter-context',
-        opts = { multiline_threshold = 1, },
-     },
+        opts = {
+            multiline_threshold = 1,
+            max_lines = 0,
+        },
+    },
 
     -- plugins used only at work
     { 'github/copilot.vim' },
