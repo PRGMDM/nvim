@@ -26,6 +26,9 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live gr
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
+-- jump to current function name
+vim.keymap.set('n', '[[', '?{<CR>w99[{?)<CR>%bzz', { noremap = true, silent = true })
+
 -- jk to escape
 vim.keymap.set('i', 'jk', '<esc>', { noremap = true, silent = true })
 
@@ -39,6 +42,10 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.keymap.set("n", "<leader><CR>", "<C-w><CR><C-w>L", { buffer = true, noremap = true, silent = true })
     end,
 })
+
+-- <leader>j/k to move through the quickfix list
+vim.keymap.set('n', '<leader>j', ':cnext<CR>zz', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>k', ':cprev<CR>zz', { noremap = true, silent = true })
 
 -- <leader>n to invoke Navbuddy
 vim.keymap.set('n', '<leader>n', ':Navbuddy<CR>', { noremap = true, silent = true })
