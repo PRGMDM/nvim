@@ -1,5 +1,8 @@
 require("config.lazy")
 
+-- optionally enable 24-bit colour
+vim.opt.termguicolors = true
+
 -- vim options
 vim.opt.mouse = "nv"
 vim.opt.number = true
@@ -26,8 +29,8 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live gr
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
--- jump to current function name
-vim.keymap.set('n', '[[', '?{<CR>w99[{?)<CR>%bzz', { noremap = true, silent = true })
+-- <leader>w to save the current buffer
+vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
 
 -- jk to escape
 vim.keymap.set('i', 'jk', '<esc>', { noremap = true, silent = true })
@@ -50,13 +53,13 @@ vim.keymap.set('n', '<leader>k', ':cprev<CR>zz', { noremap = true, silent = true
 -- <leader>n to invoke Navbuddy
 vim.keymap.set('n', '<leader>n', ':Navbuddy<CR>', { noremap = true, silent = true })
 
--- Automatically switch to the previous tab when closing a tab
-vim.api.nvim_create_autocmd("TabClosed", {
-    pattern = "*",
-    callback = function()
-        vim.cmd("tabprevious")
-    end,
-})
+-- Automatically switch to the previous tab when closing a tab, but this command doesn't work so well when the closed tab is already the last one
+-- vim.api.nvim_create_autocmd("TabClosed", {
+--     pattern = "*",
+--     callback = function()
+--         vim.cmd("tabprevious")
+--     end,
+-- })
 
 -- Reserve a space in the gutter
 -- This will avoid an annoying layout shift in the screen
@@ -104,3 +107,4 @@ require('mason-lspconfig').setup({
     end,
   },
 })
+

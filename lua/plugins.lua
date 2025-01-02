@@ -78,7 +78,7 @@ return {
         'nvim-treesitter/nvim-treesitter-context',
         opts = {
             multiline_threshold = 1,
-            max_lines = 0,
+            max_lines = 5,
         },
     },
     {
@@ -103,6 +103,7 @@ return {
         "rcarriga/nvim-dap-ui",
         dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
     },
+    { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} },
 
     -- plugins used only at work
     { 'github/copilot.vim' },
