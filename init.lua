@@ -35,9 +35,6 @@ vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
 -- jk to escape
 vim.keymap.set('i', 'jk', '<esc>', { noremap = true, silent = true })
 
--- alt-t to open current buffer in a new tab
-vim.api.nvim_set_keymap('n', '<m-t>', ':tab split<CR>', { noremap = true, silent = true })
-
 -- <leader><CR> to open quickfix item in a vertical split
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "qf",
@@ -52,6 +49,9 @@ vim.keymap.set('n', '<leader>k', ':cprev<CR>zz', { noremap = true, silent = true
 
 -- <leader>n to invoke Navbuddy
 vim.keymap.set('n', '<leader>n', ':Navbuddy<CR>', { noremap = true, silent = true })
+
+-- <leader>b to blame and copy the commit hash
+vim.keymap.set('n', '<leader>b', ':GitBlameCopySHA<CR>', { noremap = true, silent = true })
 
 -- Automatically switch to the previous tab when closing a tab, but this command doesn't work so well when the closed tab is already the last one
 -- vim.api.nvim_create_autocmd("TabClosed", {
