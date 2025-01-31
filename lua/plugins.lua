@@ -40,7 +40,6 @@ return {
                     lsp = { auto_attach = true },
                     window = {
                         size = "75%",
-                        scrolloff = 8,
                         sections = {
                             left = {
                                 size = "20%",
@@ -70,7 +69,7 @@ return {
         config = true,
         opts = {
             default_mappings = true,
-            height = 30,
+            height = 35,
         },
     },
     { 'nvim-treesitter/nvim-treesitter' },
@@ -104,6 +103,15 @@ return {
         dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
     },
     { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} },
+    {
+      "folke/todo-comments.nvim",
+      dependencies = { "nvim-lua/plenary.nvim" },
+      opts = {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    },
 
     -- plugins used only at work
     { 'github/copilot.vim' },
