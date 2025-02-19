@@ -112,6 +112,7 @@ return {
         -- refer to the configuration section below
       }
     },
+    { 'tomasky/bookmarks.nvim', },
 
     -- plugins used only at work
     { 'github/copilot.vim' },
