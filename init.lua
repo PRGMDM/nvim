@@ -65,6 +65,9 @@ vim.keymap.set('n', '<leader>n', ':Navbuddy<CR>', { noremap = true, silent = tru
 -- <leader>b to blame and copy the commit hash
 vim.keymap.set('n', '<leader>b', ':GitBlameCopySHA<CR>', { noremap = true, silent = true })
 
+-- <leader>h to open my notes
+vim.keymap.set('n', '<leader>r', ':tabe ~/notes<CR>', { noremap = true, silent = true })
+
 -- move to previous tab when closing a tab
 vim.api.nvim_create_autocmd("TabLeave", {
   pattern = "*",
