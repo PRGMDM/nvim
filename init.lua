@@ -1,30 +1,8 @@
-require("config.lazy")
-
--- optionally enable 24-bit colour
-vim.opt.termguicolors = true
-
--- vim options
-vim.opt.mouse = "nv"
-vim.opt.number = true
-vim.opt.ruler = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.incsearch = true
-vim.opt.wildmenu = true
-vim.opt.autoindent = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.clipboard = "unnamedplus"
-
-vim.g.mapleader = " "
-
--- Reserve a space in the gutter
--- This will avoid an annoying layout shift in the screen
-vim.opt.signcolumn = 'yes'
-
--- colorscheme
-vim.cmd[[colorscheme tokyonight-night]]
+require("core.options")
+require("core.keymaps")
+require("core.lazy")
+require("core.colorscheme")
+require("core.autocmds")
 
 -- telescope keybindings
 local builtin = require('telescope.builtin')
@@ -34,65 +12,10 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' 
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 vim.keymap.set('n', '<leader>fr', ':Telescope resume<CR>', { desc = 'Telescope resume' })
 
--- <leader>w to save
-vim.keymap.set('n', '<leader>w', ':wa<CR>', { noremap = true, silent = true })
-
--- jk to escape
-vim.keymap.set('i', 'jk', '<esc>', { noremap = true, silent = true })
-
--- <leader><CR> to open quickfix item in a vertical split
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "qf",
-    callback = function()
-        vim.keymap.set("n", "<leader><CR>", "<C-w><CR><C-w>L", { buffer = true, noremap = true, silent = true })
-    end,
-})
-
--- <leader>t to move current window to a new tab
-vim.keymap.set('n', '<leader>tt', '<C-w>T', { noremap = true, silent = true })
-
--- <leader>j/k to move through the quickfix list
-vim.keymap.set('n', '<leader>j', ':cnext<CR>zz', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>k', ':cprev<CR>zz', { noremap = true, silent = true })
-
--- <leader>h/l to move through tabs
-vim.keymap.set('n', '<leader>h', ':tabprev<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>l', ':tabnext<CR>', { noremap = true, silent = true })
 
 -- <leader>n to invoke Navbuddy
 vim.keymap.set('n', '<leader>n', ':Navbuddy<CR>', { noremap = true, silent = true })
 
--- <leader>b to blame and copy the commit hash
-vim.keymap.set('n', '<leader>b', ':GitBlameCopySHA<CR>', { noremap = true, silent = true })
-
--- <leader>to/c to close/keep the current tab
-vim.keymap.set('n', '<leader>to', ':tabo<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>tc', ':tabc<CR>', { noremap = true, silent = true })
-
--- <leader>fn to copy the current file name to clipboard
-vim.keymap.set('n', '<leader>fn', ':let @+ = expand("%:t")<CR>', { noremap = true, silent = true })
-
--- move to previous tab when closing a tab
-vim.api.nvim_create_autocmd("TabLeave", {
-  pattern = "*",
-  callback = function()
-    vim.g.lasttab_winid_tmp = vim.g.lasttab_winid or nil
-    vim.g.lasttab_winid = vim.api.nvim_get_current_win()
-  end,
-})
-
-vim.api.nvim_create_autocmd("TabClosed", {
-  pattern = "*",
-  callback = function()
-    vim.g.lasttab_winid = vim.g.lasttab_winid_tmp
-    if vim.fn.tabpagenr("$") > 1 then
-      pcall(function()
-        local tabwin = vim.fn.win_id2tabwin(vim.g.lasttab_winid)
-        vim.cmd("tabn " .. tabwin[1])
-      end)
-    end
-  end,
-})
 
 -- Add cmp_nvim_lsp capabilities settings to lspconfig
 -- This should be executed before you configure any language server
