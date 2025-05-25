@@ -68,6 +68,13 @@ vim.keymap.set('n', '<leader>b', ':GitBlameCopySHA<CR>', { noremap = true, silen
 -- <leader>h to open my notes
 vim.keymap.set('n', '<leader>r', ':tabe ~/notes<CR>', { noremap = true, silent = true })
 
+-- <leader>to/c to close/keep the current tab
+vim.keymap.set('n', '<leader>to', ':tabo<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>tc', ':tabc<CR>', { noremap = true, silent = true })
+
+-- <leader>fn to copy the current file name to clipboard
+vim.keymap.set('n', '<leader>fn', ':let @+ = expand("%:t")<CR>', { noremap = true, silent = true })
+
 -- move to previous tab when closing a tab
 vim.api.nvim_create_autocmd("TabLeave", {
   pattern = "*",
@@ -127,7 +134,6 @@ require('mason-lspconfig').setup({
     end,
     ["clangd"] = function ()
       require'lspconfig'.clangd.setup{
-        cmd = { "clangd-wrapper.sh" }
       }
     end,
   },
