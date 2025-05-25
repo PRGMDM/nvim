@@ -34,8 +34,8 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' 
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 vim.keymap.set('n', '<leader>fr', ':Telescope resume<CR>', { desc = 'Telescope resume' })
 
--- <leader>w to save the current buffer
-vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
+-- <leader>w to save
+vim.keymap.set('n', '<leader>w', ':wa<CR>', { noremap = true, silent = true })
 
 -- jk to escape
 vim.keymap.set('i', 'jk', '<esc>', { noremap = true, silent = true })
@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- <leader>t to move current window to a new tab
-vim.keymap.set('n', '<leader>t', '<C-w>T', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>tt', '<C-w>T', { noremap = true, silent = true })
 
 -- <leader>j/k to move through the quickfix list
 vim.keymap.set('n', '<leader>j', ':cnext<CR>zz', { noremap = true, silent = true })
@@ -64,9 +64,6 @@ vim.keymap.set('n', '<leader>n', ':Navbuddy<CR>', { noremap = true, silent = tru
 
 -- <leader>b to blame and copy the commit hash
 vim.keymap.set('n', '<leader>b', ':GitBlameCopySHA<CR>', { noremap = true, silent = true })
-
--- <leader>h to open my notes
-vim.keymap.set('n', '<leader>r', ':tabe ~/notes<CR>', { noremap = true, silent = true })
 
 -- <leader>to/c to close/keep the current tab
 vim.keymap.set('n', '<leader>to', ':tabo<CR>', { noremap = true, silent = true })
