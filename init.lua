@@ -1,21 +1,7 @@
 require("core.options")
 require("core.keymaps")
-require("core.lazy")
-require("core.colorscheme")
 require("core.autocmds")
-
--- telescope keybindings
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
-vim.keymap.set('n', '<leader>fr', ':Telescope resume<CR>', { desc = 'Telescope resume' })
-
-
--- <leader>n to invoke Navbuddy
-vim.keymap.set('n', '<leader>n', ':Navbuddy<CR>', { noremap = true, silent = true })
-
+require("core.lazy")
 
 -- Add cmp_nvim_lsp capabilities settings to lspconfig
 -- This should be executed before you configure any language server
@@ -44,19 +30,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
     vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
   end,
-})
-
-require('mason').setup({})
-require('mason-lspconfig').setup({
-  handlers = {
-    function(server_name)
-      require('lspconfig')[server_name].setup({})
-    end,
-    ["clangd"] = function ()
-      require'lspconfig'.clangd.setup{
-      }
-    end,
-  },
 })
 
 require('bookmarks').setup {
