@@ -1,5 +1,4 @@
-
-return {                
+return {
     "SmiteshP/nvim-navbuddy",
     dependencies = {
         "SmiteshP/nvim-navic",
