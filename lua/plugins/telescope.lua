@@ -12,6 +12,7 @@ return {
             vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
             vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
             vim.keymap.set('n', '<leader>fr', ':Telescope resume<CR>', { desc = 'Telescope resume' })
+            vim.keymap.set('m', '<leader>fm', ':Telescope bookmarks list<CR>', { desc = 'Telescope bookmarks' })
             require('telescope').load_extension('bookmarks')
         end
     },
