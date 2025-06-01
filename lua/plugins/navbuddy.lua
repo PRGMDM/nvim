@@ -25,8 +25,4 @@ return {
             },
         }
     },
-    config = function()
-        -- <leader>n to invoke Navbuddy
-        vim.keymap.set('n', '<leader>n', ':Navbuddy<CR>', { noremap = true, silent = true })
-    end
 }

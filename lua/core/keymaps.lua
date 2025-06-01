@@ -26,3 +26,6 @@ vim.keymap.set('n', '<leader>tc', ':tabc<CR>', { noremap = true, silent = true }
 -- <leader>fn to copy the current file name to clipboard
 -- TODO: Do I need a short cut that copy the whole path?
 vim.keymap.set('n', '<leader>fn', ':let @+ = expand("%:t")<CR>', { noremap = true, silent = true })
+
+-- <leader>n to invoke navbuddy
+vim.keymap.set('n', '<leader>n', ':Navbuddy<CR>', { noremap = true, silent = true })
