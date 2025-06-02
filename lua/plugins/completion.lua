@@ -18,7 +18,7 @@ return {
                 },
                 sources = {
                     { name = "ultisnips" },
-                    -- more sources
+                    { name = 'nvim_lsp' },
                 },
                 -- recommended configuration for <Tab> people:
                 mapping = {
