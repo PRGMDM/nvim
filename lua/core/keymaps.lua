@@ -4,6 +4,7 @@ vim.keymap.set('n', '<leader>w', ':wa<CR>', { noremap = true, silent = true })
 -- jk to escape
 vim.keymap.set('i', 'jk', '<esc>', { noremap = true, silent = true })
 
+-- TODO: either change this to use another key or change other tab realted keymaps to not start with t
 -- <leader>t to move current window to a new tab
 vim.keymap.set('n', '<leader>t', '<C-w>T', { noremap = true, silent = true })
 
@@ -29,3 +30,9 @@ vim.keymap.set('n', '<leader>fn', ':let @+ = expand("%:t")<CR>', { noremap = tru
 
 -- <leader>n to invoke navbuddy
 vim.keymap.set('n', '<leader>n', ':Navbuddy<CR>', { noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>r', ':tabe ~/notes<CR>', { noremap = true, silent = true })
+
+-- <leader>te to open terminal in a new tab
+vim.keymap.set('n', '<leader>te', ':tabnew | terminal<CR>', { noremap = true, silent = true })
+

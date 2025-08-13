@@ -1,4 +1,5 @@
 -- <leader><CR> to open quickfix item in a vertical split
+-- TODO: How is this any better than just always set this keymap?
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "qf",
     callback = function()

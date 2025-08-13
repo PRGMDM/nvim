@@ -35,11 +35,7 @@ return {
                     ),
                 },
                 sources = cmp.config.sources({
-                    { name = "lazydev" },
                     { name = "nvim_lsp" },
-                    { name = "path" },
-                }, {
-                    { name = "buffer" },
                 }),
                 formatting = {
                     format = function(entry, item)
@@ -68,15 +64,15 @@ return {
         end,
     },
 
-    {
-        "lervag/vimtex",
-        lazy = false, -- we don't want to lazy load VimTeX
-        init = function()
-            vim.g.vimtex_view_method = "zathura"
-            vim.g.tex_flavor = 'latex'
-            vim.g.vimtex_quickfix_mode = 0
-        end
-    },
+--     {
+--         "lervag/vimtex",
+--         lazy = false, -- we don't want to lazy load VimTeX
+--         init = function()
+--             vim.g.vimtex_view_method = "zathura"
+--             vim.g.tex_flavor = 'latex'
+--             vim.g.vimtex_quickfix_mode = 0
+--         end
+--     },
     {
         'KeitaNakamura/tex-conceal.vim',
         init = function()

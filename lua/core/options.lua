@@ -1,6 +1,3 @@
--- optionally enable 24-bit colour
-vim.opt.termguicolors = true
-
 -- vim options
 vim.opt.mouse = "nv"
 vim.opt.number = true
@@ -14,5 +11,6 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.o.clipboard = "unnamedplus"
-vim.o.signcolumn = 'yes'
+vim.o.signcolumn = "yes"
 vim.g.mapleader = " "
+vim.g.python3_host_prog = "/home/haodon2f/.venv/bin/python"
