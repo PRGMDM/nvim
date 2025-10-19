@@ -21,8 +21,8 @@ vim.keymap.set('n', '<leader>l', ':tabnext<CR>', { noremap = true, silent = true
 vim.keymap.set('n', '<leader>b', ':GitBlameCopySHA<CR>', { noremap = true, silent = true })
 
 -- <leader>to/c to close/keep the current tab
-vim.keymap.set('n', '<leader>to', ':tabo<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>tc', ':tabc<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>o', ':tabo<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>c', ':tabc<CR>', { noremap = true, silent = true })
 
 -- <leader>fn to copy the current file name to clipboard
 -- TODO: Do I need a short cut that copy the whole path?
@@ -30,9 +30,4 @@ vim.keymap.set('n', '<leader>fn', ':let @+ = expand("%:t")<CR>', { noremap = tru
 
 -- <leader>n to invoke navbuddy
 vim.keymap.set('n', '<leader>n', ':Navbuddy<CR>', { noremap = true, silent = true })
-
-vim.keymap.set('n', '<leader>r', ':tabe ~/notes<CR>', { noremap = true, silent = true })
-
--- <leader>te to open terminal in a new tab
-vim.keymap.set('n', '<leader>te', ':tabnew | terminal<CR>', { noremap = true, silent = true })
 

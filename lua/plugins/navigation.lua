@@ -16,6 +16,33 @@ return {
             require('telescope').load_extension('bookmarks')
         end
     },
+    {
+        "SmiteshP/nvim-navbuddy",
+        dependencies = {
+            "SmiteshP/nvim-navic",
+            "MunifTanjim/nui.nvim"
+        },
+        opts = {
+            lsp = { auto_attach = true },
+            window = {
+                size = "75%",
+                sections = {
+                    left = {
+                        size = "20%",
+                        border = nil,
+                    },
+                    mid = {
+                        size = "35%",
+                        border = nil,
+                    },
+                    right = {
+                        border = nil,
+                        preview = "leaf",
+                    }
+                },
+            }
+        },
+    },
 }
 
 -- TODO: Can I make the search results go top-down instead of bottom-up?

@@ -13,4 +13,3 @@ vim.o.expandtab = true
 vim.o.clipboard = "unnamedplus"
 vim.o.signcolumn = "yes"
 vim.g.mapleader = " "
-vim.g.python3_host_prog = "/home/haodon2f/.venv/bin/python"

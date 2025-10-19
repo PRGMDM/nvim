@@ -1,12 +1,3 @@
--- <leader><CR> to open quickfix item in a vertical split
--- TODO: How is this any better than just always set this keymap?
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "qf",
-    callback = function()
-        vim.keymap.set("n", "<leader><CR>", "<C-w><CR><C-w>L", { buffer = true, noremap = true, silent = true })
-    end,
-})
-
 -- move to previous tab when closing a tab
 vim.api.nvim_create_autocmd("TabLeave", {
     pattern = "*",

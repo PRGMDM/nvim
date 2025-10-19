@@ -1,11 +1,4 @@
 return {
-    {
-        -- Smooth scrolling
-        "psliwka/vim-smoothie",
-        init = function()
-            vim.g.smoothie_enabled = 1
-        end
-    },
     { 'tpope/vim-surround' }, -- actions for parentheses, brackets, quotes, etc
     {
         'rmagatti/goto-preview',
@@ -27,17 +20,6 @@ return {
             },
         },
     },
-    { 'nvim-treesitter/nvim-treesitter' },
-    {
-        'nvim-treesitter/nvim-treesitter-context',
-        branch = 'master',
-        lazy = false,
-        build = ":TSUpdate",
-        opts = {
-            multiline_threshold = 1,
-            max_lines = 5,
-        },
-    },
     {
         "f-person/git-blame.nvim",
         -- load the plugin at startup
@@ -55,15 +37,6 @@ return {
             virtual_text_column = 1, -- virtual text start column, check Start virtual text at column section for more options
         },
 
-    },
-    {
-        "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-        }
     },
     {
         'tomasky/bookmarks.nvim',

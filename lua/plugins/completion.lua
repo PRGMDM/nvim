@@ -1,84 +1,111 @@
-local WIDE_HEIGHT = 40
 return {
-    {
+    'hrsh7th/nvim-cmp',
+    dependencies = {
+        'neovim/nvim-lspconfig',
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-cmdline',
         'hrsh7th/nvim-cmp',
-        dependencies = {
-            { 'SirVer/ultisnips', },
-            { 'lervag/vimtex' },
-            { 'quangnguyen30192/cmp-nvim-ultisnips', },
-            { 'hrsh7th/cmp-nvim-lsp' },
+        {
+            'SirVer/ultisnips',
+            config = function()
+                vim.g.UltiSnipsExpandTrigger = '<Tab>'
+                vim.g.UltiSnipsJumpForwardTrigger = '<Tab>'
+                vim.g.UltiSnipsJumpBackwardTrigger = '<S-Tab>'
+                vim.g.UltiSnipsListSnippets = '<c-x><c-s>'
+                vim.g.UltiSnipsRemoveSelectModeMappings = 0
+            end,
         },
-        opts = function()
-            vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
-            local cmp = require("cmp")
-            local defaults = require("cmp.config.default")()
-            local auto_select = true
-            local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
-            return {
-                auto_brackets = {}, -- configure any filetype to auto add brackets
-                completion = {
-                    completeopt = "menu,menuone,noinsert" .. (auto_select and "" or ",noselect"),
-                },
-                preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
-                mapping = {
-                    ["<Tab>"] = cmp.mapping(
-                        function(fallback)
-                            cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
-                        end,
-                        { "i", "s", --[[ "c" (to enable the mapping in command mode) ]] }
-                    ),
-                    ["<S-Tab>"] = cmp.mapping(
-                        function(fallback)
-                            cmp_ultisnips_mappings.jump_backwards(fallback)
-                        end,
-                        { "i", "s", --[[ "c" (to enable the mapping in command mode) ]] }
-                    ),
-                },
-                sources = cmp.config.sources({
-                    { name = "nvim_lsp" },
-                }),
-                formatting = {
-                    format = function(entry, item)
-                        local widths = {
-                            abbr = vim.g.cmp_widths and vim.g.cmp_widths.abbr or 40,
-                            menu = vim.g.cmp_widths and vim.g.cmp_widths.menu or 30,
-                        }
-
-                        for key, width in pairs(widths) do
-                            if item[key] and vim.fn.strdisplaywidth(item[key]) > width then
-                                item[key] = vim.fn.strcharpart(item[key], 0, width - 1) .. "…"
-                            end
-                        end
-
-                        return item
-                    end,
-                },
-                experimental = {
-                    -- only show ghost text when we show ai completions
-                    ghost_text = vim.g.ai_cmp and {
-                        hl_group = "CmpGhostText",
-                    } or false,
-                },
-                sorting = defaults.sorting,
-            }
-        end,
+        'quangnguyen30192/cmp-nvim-ultisnips',
     },
+    config = function()
+        -- Set up nvim-cmp.
+        local cmp = require 'cmp'
+        local t = function(str)
+            return vim.api.nvim_replace_termcodes(str, true, true, true)
+        end
 
---     {
---         "lervag/vimtex",
---         lazy = false, -- we don't want to lazy load VimTeX
---         init = function()
---             vim.g.vimtex_view_method = "zathura"
---             vim.g.tex_flavor = 'latex'
---             vim.g.vimtex_quickfix_mode = 0
---         end
---     },
-    {
-        'KeitaNakamura/tex-conceal.vim',
-        init = function()
-            vim.o.conceallevel = 1
-            vim.g.tex_conceal = 'abdmg'
-            vim.cmd('hi Conceal ctermbg=none')
-        end,
-    }
+        cmp.setup({
+            snippet = {
+                -- REQUIRED - you must specify a snippet engine
+                expand = function(args)
+                    vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+                end,
+            },
+            mapping = {
+                ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { 'i' }),
+                ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { 'i' }),
+                ['<C-n>'] = cmp.mapping({
+                    c = function()
+                        if cmp.visible() then
+                            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                        else
+                            vim.api.nvim_feedkeys(t('<Down>'), 'n', true)
+                        end
+                    end,
+                    i = function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                        else
+                            fallback()
+                        end
+                    end
+                }),
+                ['<C-p>'] = cmp.mapping({
+                    c = function()
+                        if cmp.visible() then
+                            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+                        else
+                            vim.api.nvim_feedkeys(t('<Up>'), 'n', true)
+                        end
+                    end,
+                    i = function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+                        else
+                            fallback()
+                        end
+                    end
+                }),
+                ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+                ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+                ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+                ['<C-e>'] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
+                ['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+            },
+            sources = cmp.config.sources({
+                { name = 'nvim_lsp' },
+                { name = 'ultisnips' }, -- For ultisnips users.
+            }, {
+                { name = 'buffer' },
+            })
+        })
+
+        -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+        cmp.setup.cmdline({ '/', '?' }, {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = {
+                { name = 'buffer' }
+            }
+        })
+
+        -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+        cmp.setup.cmdline(':', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+                { name = 'path' }
+            }, {
+                { name = 'cmdline' }
+            }),
+            matching = { disallow_symbol_nonprefix_matching = false }
+        })
+
+        -- Set up lspconfig.
+        local capabilities = require('cmp_nvim_lsp').default_capabilities()
+        -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+        vim.lsp.config['clangd'] = {
+            capabilities = capabilities
+        }
+    end,
 }
