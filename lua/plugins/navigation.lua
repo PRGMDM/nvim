@@ -46,3 +46,4 @@ return {
 }
 
 -- TODO: Can I make the search results go top-down instead of bottom-up?
+-- TODO: make ctrl q open the first item in a new tab and open the quickfix list.
